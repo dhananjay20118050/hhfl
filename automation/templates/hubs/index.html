@@ -1,0 +1,68 @@
+{% include "masterlayout/header.html"%}
+{% include "masterlayout/topnav.html"%}
+{% include "masterlayout/sidebar.html"%}
+{% block content %}
+<!-- Main Content -->
+{% load static %}
+<div class="main-content">
+    {% if messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+
+        {% for message in messages %}
+
+        <strong>Success !</strong> {{ message }}.
+
+        {% endfor %}
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+
+            <span aria-hidden="true">&times;</span>
+
+        </button>
+
+    </div>
+    {% endif %}
+  <section class="section">
+    <div class="section-header">
+        <h1>Manage Servers</h1>
+        <div class="card-header-action" style="margin-left:auto"><a href="/createhub" id="create-server" class="btn btn-primary">Add Server <i class="fas fa-plus"></i></a></div>
+    </div>
+    <div class="section-body">
+		<table class="data-table table table-striped dataTable no-footer" id="datatables">
+			<thead>
+				<tr>
+					<th>No.</th>
+					<th>Process Name</th>
+					<th>IP</th>
+					<th>Port</th>
+					<th>Status</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+		</table>
+    </div>
+
+      <div class="modal fade" id="confirm" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Are you sure?</h4>
+                    </div>
+                    <div class="modal-body">
+                        <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Delete</button>
+                        <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+</div>
+
+{% endblock %}
+<script src="{% static 'js/jquery.min.js' %} "></script>
+<script src="{% static 'admin/assets/modules/nicescroll/jquery.nicescroll.min.js' %} "></script>
+<script src="{% static 'admin/assets/js/scripts.js' %} "></script>
+<script src="{% static 'admin/assets/modules/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'js/hubindex.js' %}"></script>

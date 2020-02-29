@@ -1,0 +1,232 @@
+{% include "masterlayout/header.html"%}
+{% include "masterlayout/topnav.html"%}
+{% include "masterlayout/sidebar.html"%}
+{% block content %}
+<!-- Main Content -->
+{% load static %}
+<style>
+    #dt-2_filter{float:right}
+    .section-body{overflow-x:auto}
+
+#filters1 {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 15px;
+}
+.dropdown-menu>li>a {
+            display: block;
+            padding: 3px 20px;
+            clear: both;
+            font-weight: 400;
+            line-height: 1.42857143;
+            color: #333;
+            white-space: nowrap;
+}
+
+.indtd{
+border-left:1px solid;
+}
+
+.modal fade show{
+padding-right:0px !important;
+top:0 !important;
+}
+
+</style>
+
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Data Capture Process</h1>
+        </div>
+
+        <div class="section-body">
+            <div class="container">
+                <form action="{ url 'profiles:edit_details' }" method="post" enctype="multipart/form-data"
+                      id="location">
+                    <div class="modal-body">
+                        {% csrf_token %}
+                        <div class="">
+                            <div class="row">
+                                <div class="col-md-12" style="text-align:center">
+                                    <div class="form-group">
+                                        <div id="appid">{{ appid }}</div>
+                                        <select class="form-control btn" id="listofbankstats" style="border:solid 1px">
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3"></div>
+                            </div>
+                            <div style="overflow:scroll">
+                                <table class="table-responsive" width="100%">
+                                    <tbody>
+                                    <tr>
+                                        <td style="vertical-align:top">
+                                            <div><strong>Original Statement</strong></div>
+                                            <embed style="width:100%" src="{% static 'upload/BOB.pdf' %}" width="350"
+                                                   height="250" type="application/pdf">
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <hr>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:20px"><strong>Extracted Data</strong>
+                                            <table cellspacing="0"
+                                                   class="data-table table table-striped dataTable no-footer"
+                                                   id="dt-modal" width="100%">
+                                                <thead>
+                                                <tr>
+                                                    <th>SR. NO.</th>
+                                                    <th>Date</th>
+                                                    <th>Description</th>
+                                                    <th>Cheque No.</th>
+                                                    <th>Debit</th>
+                                                    <th>Credit</th>
+                                                    <th>Balance</th>
+                                                    <th>Value Date</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody id="statdata"></tbody>
+                                            </table>
+
+
+                                        </td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6" style="text-align:center;margin:0px 0px 15px 0px">
+                                    <button class="btn btn-success"
+                                            style="padding: 5px 100px 5px 100px;" type="button">Save
+                                        Data
+                                    </button>
+                                </div>
+                                <div class="col-md-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+{% endblock %}
+<script src="{% static 'js/jquery.min.js' %} "></script>
+<script src="{% static 'js/datacapture/toastr.min.js' %}"></script>
+<script src="{% static 'js/datacapture/sweetalert/sweetalert.min.js' %}"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#listofbankstats').change(function(){
+    var e = document.getElementById("#listofbankstats");
+    var value = e.options[e.selectedIndex].value;
+    alert(value);
+    /*$.ajax({
+        url: "your-url",
+        type: "post", // or "get"
+        data: value,
+        headers: {'X-CSRFToken': '{{ csrf_token }}'}, // for csrf token
+        success: function(data) {
+
+            alert(data.result);
+        }});*/
+    });
+
+	$("input").change(function () {
+        alert('Change event fired')
+    });
+
+	 var appid = document.getElementById(appid).value;
+	 alert(appid)
+     $(".modal-body #appId").val(appid);
+
+     $.ajax({
+        url: "/api/UpdatedataViewSet",
+        type: "GET",
+        data: {appid: appid},
+        success: function(response){
+          result=JSON.stringify(response);
+          if(result){
+            var append2='';
+            var options='<option value="0">select</option>';
+             $('#listofbankstats').empty();
+
+             var obj = JSON.parse(result);
+             console.log(obj.list2);
+             for(i=0;i<obj.list1.length;i++){
+               options += '<option value="' + obj.list1[i].id +'">' + obj.list1[i].bank_name + '</option>';
+             }
+             $('#listofbankstats').append(options);
+
+             $('#statdata').empty();
+             for(j=0;j<obj.list2.length;j++){
+               append2 += '<tr>'+
+               '<td class="sorting_new">'+obj.list2[j].id+'</td>'+
+               '<td><input class="form-control" type="text" value="'+obj.list2[j].date+'" id="Date_'+j+'" /></td>'+
+               '<td><input class="form-control" type="text" value="'+obj.list2[j].description+'" id="Description_'+j+'"/></td>'+
+               '<td><input class="form-control" type="text" value="'+obj.list2[j].cheque_no+'" id="cheque_no_'+j+'"/></td>'+
+               '<td><input class="form-control" type="text" value="'+obj.list2[j].credit+'" id="credit_'+j+'"/></td>'+
+               '<td><input class="form-control" type="text" value="'+obj.list2[j].debit+'" id="debit_'+j+'"/></td>'+
+               '<td><input class="form-control" type="text" value="'+obj.list2[j].balance+'" id="balance_'+j+'"/></td>'+
+               '<td><input class="form-control" type="text" value="'+obj.list2[j].value_date+'" id="value_date_'+j+'"/></td>'+
+               '</tr>';
+             }
+             $('#statdata').append(append2);
+             $('#dt-modal').DataTable( {
+                "pagingType": "full_numbers"
+            } );
+
+          }
+        }
+
+      });
+
+});
+
+function setDT7(){
+        table = $('#dt-7').DataTable({
+        processing: true,
+        serverSide: true,
+       "ajax": {
+        "url": "/api/getfiledata/",
+        "type": "GET"
+         },
+        columns: [
+            {render: function ( data, type, row, meta ) { return  meta.row+meta.settings._iDisplayStart+1; }},
+            { data: "case_id" },
+            { data: "created_on" },
+ 			{ data: "app_status" },
+ 			{
+                mRender: function ( file_name, type, data ) {
+                return '<a href="#location" data-toggle="modal" data-id='+data['id']+' data-target="#location" class="modalclick" ><i class="fa fa-play" aria-hidden="true"></i></a>';
+                 }
+             }
+        ],
+        dom: '<"toolbar"lB<"#filters1">f>rt<"bottom"ip><"clear">',
+        initComplete: function () {
+        },
+        "bDestroy": true,
+        });
+
+  }
+
+</script>
+
+<script src="{% static 'js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'admin/assets/modules/nicescroll/jquery.nicescroll.min.js' %} "></script>
+<script src="{% static 'admin/assets/js/scripts.js' %} "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>
+<script src="{% static 'admin/assets/modules/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>

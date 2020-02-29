@@ -1,0 +1,135 @@
+{% extends "master.html" %}
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>RPA Panel</title>-->
+<!--    {% load static %}-->
+<!--    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css"/>-->
+<!--    <link rel="stylesheet" href="{% static 'css/jquery.dataTables.css' %}" type="text/css"/>-->
+<!--    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css"/>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h4 class="modal-title" id="modal_title"></h4>-->
+<!--                </div>-->
+<!--                <div class="modal-body">-->
+<!--                    <form role="form" method="POST" class="post-form" action="">-->
+<!--                        {% csrf_token %}-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="User">Name</label>-->
+<!--                            <input type="text" class="form-control" id="name" name="name"  placeholder="Enter Name"-->
+<!--                                   required="true">-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="IP">IP</label>-->
+<!--                            <input type="text" class="form-control" id="ip" name="ip"  placeholder="Enter Name"-->
+<!--                                   required="true">-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="Port">Port</label>-->
+<!--                            <input type="text" class="form-control" id="port" name="port"  placeholder="Enter Name"-->
+<!--                                   required="true">-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="ProcessId">Process ID</label>-->
+<!--                            <input type="text" class="form-control" id="process_id" name="process_id"-->
+<!--                                    placeholder="Enter process_id" required="true" autocomplete="off">-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash;<div class="form-group">-->
+<!--                            <label for="Role">Role ID</label>-->
+<!--                            <select  class="form-control" id="roleid" name="roleid"><option>1</option><option>2</option><option>3</option></select>-->
+<!--                        </div>&ndash;&gt;-->
+<!--                        <input type="hidden" id="type" name="type" value="new">-->
+<!--                        <button type="submit" class="btn btn-primary"><span-->
+<!--                                class="glyphicon glyphicon-ok"></span> Submit-->
+<!--                        </button>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--<script src="{% static 'js/jquery.min.js' %}"></script>-->
+<!--<script src="{% static 'js/bootstrap.min.js' %}"></script>-->
+<!--<script src="{% static 'js/jquery.dataTables.js' %}"></script>-->
+<!--<script src="{% static 'js/index.js' %}"></script>-->
+<!--</body>-->
+<!--</html>-->
+{% block content %}
+ <!-- Main Content -->
+   {% load static %}
+<div class="main-content">
+
+                <section class="section">
+  <div class="section-header">
+    <h1>Add Node</h1>
+      {% if messages %}
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+
+        {% for message in messages %}
+
+        <strong>Success !</strong> {{ message }}.
+
+        {% endfor %}
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+
+          <span aria-hidden="true">&times;</span>
+
+        </button>
+
+      </div>
+
+    {% endif %}
+  </div>
+  <div class="section-body">
+   <div class="row">
+      <div class="col-12">
+         <div class="message">
+
+         </div>
+         <div class="card">
+            <div class="card-header">
+               <h4>Add a New Node</h4>
+            </div>
+            <form id="node_form" role="form" method="POST" class="post-form" action="">
+
+              <div class="card-body">
+                 <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Name</label>
+                    <div class="col-sm-12 col-md-7"><input  id="name" name="name" type="text" placeholder="Name of the Node" class="form-control required"></div>
+                 </div>
+                 <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">process</label>
+                     <div class="col-sm-12 col-md-7">
+                       <select class="form-control required" id="process_id" name="process_id">
+                        <option value="">Select</option>
+                          <option value="1">RPA-CC-01</option>
+                          <option value="2">RPA-PL-02</option>
+                       </select>
+                      </div>
+                 </div>
+                 <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Port</label>
+                    <div class="col-sm-12 col-md-7"><input id="port" name="port" type="text" placeholder="Port Number" class="form-control required"></div>
+                 </div>
+
+                 <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">IP</label>
+                    <div class="col-sm-12 col-md-7"><input id="ip" name="ip"  type="text" placeholder="IP Address" class="form-control required"></div>
+                 </div>
+                 <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
+                     <input type="hidden" id="type" name="type" value="new">
+                    <div class="col-sm-12 col-md-7"><button type="submit" class="btn btn-primary"><span>Add</span></button></div>
+                 </div>
+              </div>
+          </form>
+         </div>
+      </div>
+   </div>
+</div>
+</section>
+            </div>
+{% endblock %}

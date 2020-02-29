@@ -1,0 +1,60 @@
+{% extends "master.html" %}
+{% block content %}
+ <!-- Main Content -->
+   {% load static %}
+<div class="main-content">
+                <section class="section">
+  <div class="section-header">
+    <h1>Edit Node</h1>
+  </div>
+  <div class="section-body">
+   <div class="row">
+      <div class="col-12">
+         <div class="message">
+
+         </div>
+         <div class="card">
+            <div class="card-header">
+               <h4>Edit Node</h4>
+            </div>
+            <form id="node_form" role="form" method="POST" class="post-form" action="/update/{{nodes.id}}">
+                {% csrf_token %}
+              <div class="card-body">
+                 <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Name</label>
+                    <div class="col-sm-12 col-md-7"><input  id="name" value="{{nodes.name}}" name="name" type="text" placeholder="Name of the Node" class="form-control required"></div>
+                 </div>
+                 <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">process</label>
+                     <div class="col-sm-12 col-md-7">
+                       <select class="form-control required" id="process_id" name="process_id">
+                        <option value="">Select</option>
+                          <option value="1">RPA-CC-01</option>
+                          <option value="2">RPA-PL-02</option>
+                       </select>
+                      </div>
+                 </div>
+                 <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Port</label>
+                    <div class="col-sm-12 col-md-7"><input id="port" value="{{nodes.port}}" name="port" type="text" placeholder="Port Number" class="form-control required"></div>
+                 </div>
+
+                 <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">IP</label>
+                    <div class="col-sm-12 col-md-7"><input id="ip" value="{{nodes.ip}}" name="ip"  type="text" placeholder="IP Address" class="form-control required"></div>
+                 </div>
+                 <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
+                     <input type="hidden" id="type" name="type" value="">
+                     <input type="hidden" id="dataid" name="dataid" value="{{nodes.id}}">
+                    <div class="col-sm-12 col-md-7"><button type="submit" class="btn btn-primary"><span>Update</span></button></div>
+                 </div>
+              </div>
+          </form>
+         </div>
+      </div>
+   </div>
+</div>
+</section>
+            </div>
+{% endblock %}

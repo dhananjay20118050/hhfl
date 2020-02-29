@@ -1,0 +1,9 @@
+{% extends "admin/base_inner.html" %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('RPA Automation Admin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name" style="text-align:center"><a href="{% url 'admin:index' %}"><img src="https://www.wipro.com//content/dam/nexus/en/brand/Wipro-Logo-w88X70h-Px.png"> &nbsp;&nbsp;{{ site_header|default:_('RPA Automation') }}</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

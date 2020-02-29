@@ -1,0 +1,219 @@
+{% extends "master.html" %}
+{% block content %}
+<div id="app">
+    <div class="main-wrapper main-wrapper-1">
+        <div class="navbar-bg"></div>
+        <nav class="navbar navbar-expand-lg main-navbar">
+            <form class="form-inline mr-auto" action="http://localhost/rpa-panel/admin/users">
+                <ul class="navbar-nav mr-3">
+                    <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a>
+                    </li>
+                    <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i
+                            class="fas fa-search"></i></a>
+                    </li>
+                </ul>
+
+            </form>
+            <ul class="navbar-nav navbar-right">
+                <li class="dropdown dropdown-list-toggle">
+                    <a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg"><i
+                        class="far fa-bell"></i></a>
+                    <div class="dropdown-menu dropdown-list dropdown-menu-right">
+                        <div class="dropdown-header">Notifications
+                            <div class="float-right">
+                                <a href="#">Mark All As Read</a>
+                            </div>
+                        </div>
+                        <div class="dropdown-list-content dropdown-list-icons">
+                            <p class="text-muted p-2 text-center">No notifications found!</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="dropdown"><a href="#" data-toggle="dropdown"
+                                        class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                    <img alt="image" src="http://localhost/rpa-panel/assets/img/avatar/avatar-1.png"
+                         class="rounded-circle mr-1">
+                    <div class="d-sm-none d-lg-inline-block">Hi, Vikas</div>
+                </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-title">Welcome, Vikas</div>
+                        <a href="http://localhost/rpa-panel/admin/users/1/edit" class="dropdown-item has-icon">
+                            <i class="far fa-user"></i> Profile Settings
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="{% url 'admin:logout' %}" class="dropdown-item has-icon text-danger">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div class="main-sidebar">
+            <aside id="sidebar-wrapper">
+                <div class="sidebar-brand">
+                    <a href="http://localhost/rpa-panel/admin/dashboard">RPA PANEL</a>
+                </div>
+                <div class="sidebar-brand sidebar-brand-sm">
+                    <a href="http://localhost/rpa-panel/admin/dashboard">RP</a>
+                </div>
+                <ul class="sidebar-menu">
+                    <li class="menu-header">Dashboard</li>
+                    <li class=" active">
+                        <a class="nav-link" href="http://localhost/rpa-panel/admin/dashboard"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                    </li>
+                    <li class="menu-header">Masters</li>
+                    <li class="dropdown ">
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-table"></i><span>Masters</span></a>
+                        <ul class="dropdown-menu">
+                            <li class=""><a class="nav-link"
+                                            href="http://localhost/rpa-panel/admin/users"><i
+                                    class="fa fa-users"></i><span>Users</span></a></li>
+                            <li class=""><a class="nav-link"
+                                            href="http://localhost/rpa-panel/admin/apps"><i
+                                    class="fas fa-plus"></i><span>Apps</span></a></li>
+                            <li class=""><a class="nav-link"
+                                            href="http://localhost/rpa-panel/admin/hubs"><i
+                                    class="fab fa-hubspot"></i><span>RPA Servers</span></a></li>
+                            <li class=""><a class="nav-link"
+                                            href="/Nodes"><i
+                                    class="fas fa-robot"></i><span>RPA Nodes</span></a></li>
+                            <li class=""><a class="nav-link"
+                                            href="http://localhost/rpa-panel/admin/process"><i class="fas fa-tasks"></i><span>Process</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-header">Apps</li>
+                    <li class="dropdown ">
+                        <a href="#" class="nav-link has-dropdown"><i
+                                class="fas fa-cogs"></i><span>Applications</span></a>
+                        <ul class="dropdown-menu">
+                            <li class=""><a class="nav-link"
+                                            href="http://localhost/rpa-panel/admin/process/show/1"><i
+                                    class="fas fa-credit-card"></i><span>HFC RPA Project</span></a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </aside>
+        </div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <section class="section">
+                <div class="section-header">
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="section-body">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-primary">
+                                    <i class="fab fa-hubspot"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Total Servers</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        2
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-danger">
+                                    <i class="fab fa-hubspot"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Total Nodes</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        4
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-warning">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Bot Finished</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        47
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-success">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Online Bots</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        1
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Popular Browser</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <div class="browser browser-chrome"></div>
+                                        <div class="mt-2 font-weight-bold">Chrome</div>
+                                        <div class="text-muted text-small"><span class="text-primary"><i
+                                                class="fas fa-caret-up"></i></span> 81%
+                                        </div>
+                                    </div>
+                                    <div class="col text-center">
+                                        <div class="browser browser-firefox"></div>
+                                        <div class="mt-2 font-weight-bold">Firefox</div>
+                                        <div class="text-muted text-small"><span class="text-danger"><i
+                                                class="fas fa-caret-down"></i></span> 0%
+                                        </div>
+                                    </div>
+                                    <div class="col text-center">
+                                        <div class="browser browser-safari"></div>
+                                        <div class="mt-2 font-weight-bold">Safari</div>
+                                        <div class="text-muted text-small"><span class="text-danger"><i
+                                                class="fas fa-caret-down"></i></span> 0%
+                                        </div>
+                                    </div>
+                                    <div class="col text-center">
+                                        <div class="browser browser-opera"></div>
+                                        <div class="mt-2 font-weight-bold">Opera</div>
+                                        <div class="text-muted text-small"><span class="text-danger"><i
+                                                class="fas fa-caret-down"></i></span> 0%
+                                        </div>
+                                    </div>
+                                    <div class="col text-center">
+                                        <div class="browser browser-internet-explorer"></div>
+                                        <div class="mt-2 font-weight-bold">IE</div>
+                                        <div class="text-muted text-small"><span class="text-primary"><i
+                                                class="fas fa-caret-up"></i></span> 19%
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}

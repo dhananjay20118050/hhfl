@@ -1,0 +1,79 @@
+{% include "masterlayout/header.html"%}
+{% include "masterlayout/topnav.html"%}
+{% include "masterlayout/sidebar.html"%}
+{% block content %}
+ <!-- Main Content -->
+   {% load static %}
+  <div class="section-body">
+   <div class="row">
+      <div class="col-12">
+         <div class="message">
+
+         </div>
+         <div class="card">
+            <div class="card-header">
+               <h4>Add a New App</h4>
+            </div>
+            <form id="app_form" role="form" method="POST" class="post-form" action="">
+
+              <div class="card-body">
+                 <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Name</label>
+                    <div class="col-sm-12 col-md-7">
+                        <input  id="name" name="name" type="text" placeholder="Name of the App" class="form-control required"></div>
+                 </div>
+                 <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">DB Username</label>
+                     <div class="col-sm-12 col-md-7">
+                    <input  id="db_username" name="db_username" type="text" placeholder="DB Username" class="form-control required">
+                      </div>
+                 </div>
+
+                 <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">DB Password</label>
+                     <div class="col-sm-12 col-md-7">
+                    <input  id="db_password" name="db_password" type="password" placeholder="DB Password" class="form-control required">
+                      </div>
+                 </div>
+
+                <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">DB Host</label>
+                     <div class="col-sm-12 col-md-7">
+                    <input  id="db_host" name="db_host" type="text" placeholder="DB Host" class="form-control required">
+                      </div>
+                 </div>
+
+                  <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">DB Port</label>
+                     <div class="col-sm-12 col-md-7">
+                    <input  id="db_port" name="db_port" type="text" placeholder="DB Port" class="form-control required">
+                      </div>
+                 </div>
+
+                   <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">DB Name</label>
+                     <div class="col-sm-12 col-md-7">
+                    <input  id="db_name" name="db_name" type="text" placeholder="DB Name" class="form-control required">
+                      </div>
+                 </div>
+
+                 <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
+                     <input type="hidden" id="type" name="type" value="new">
+                     <input type="hidden" id="dataid" name="dataid" value="{{Apps.id}}">
+                    <div class="col-sm-12 col-md-7"><button type="submit" class="btn btn-primary"><span>Add</span></button></div>
+                 </div>
+              </div>
+          </form>
+         </div>
+      </div>
+   </div>
+</div>
+</section>
+{% endblock %}
+<script src="{% static 'js/jquery.min.js' %} "></script>
+<script src="{% static 'admin/assets/modules/nicescroll/jquery.nicescroll.min.js' %} "></script>
+<script src="{% static 'admin/assets/js/scripts.js' %} "></script>
+<script src="{% static 'admin/assets/modules/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'js/appindex.js' %}"></script>

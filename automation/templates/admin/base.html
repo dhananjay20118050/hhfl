@@ -1,0 +1,45 @@
+{% load i18n static %}
+<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static 'admin/css/base_inner.css' %}{% endblock %}">
+{% include "masterlayout/header.html"%}
+{% include "masterlayout/topnav.html"%}
+{% include "masterlayout/sidebar.html"%}
+<script type="text/javascript" src="/static/admin/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}"
+  data-admin-utc-offset="{% now "Z" %}">
+
+<!-- Container -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Manage Users</h1>
+        </div>
+
+    {% block messages %}
+        {% if messages %}
+        <ul class="messagelist">{% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
+        {% endfor %}</ul>
+        {% endif %}
+    {% endblock messages %}
+
+    <!-- Content -->
+    <div id="content" class="{% block coltype %}colM{% endblock %}">
+        {% block content %}
+        {% block object-tools %}{% endblock %}
+        {{ content }}
+        {% endblock %}
+        {% block sidebar %}{% endblock %}
+
+    </div>
+    <!-- END Content -->
+
+    </section>
+</div>
+<!-- END Container -->
+<script src="{% static 'js/jquery.min.js' %} "></script>
+<script src="{% static 'admin/assets/modules/nicescroll/jquery.nicescroll.min.js' %} "></script>
+<script src="{% static 'admin/assets/js/scripts.js' %} "></script>
+<script src="{% static 'admin/assets/modules/bootstrap/js/bootstrap.min.js' %}"></script>
+
+
