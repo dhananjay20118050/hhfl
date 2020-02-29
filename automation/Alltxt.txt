@@ -12,7 +12,7 @@ decorator==4.4.1
 decouple==0.0.7
 defusedxml==0.6.0
 diff-match-patch==20181111
-Django==3.0.2
+Django==3.0.3
 django-crispy-forms==1.8.1
 django-import-export==2.0.1
 django-model-utils==3.2.0
