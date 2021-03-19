@@ -16,7 +16,7 @@ Django==3.0.2
 django-crispy-forms==1.8.1
 django-import-export==2.0.1
 django-model-utils==3.2.0
-djangorestframework==3.10.3
+djangorestframework==3.11.2
 Elixir==0.7.1
 et-xmlfile==1.0.1
 ez-setup==0.9

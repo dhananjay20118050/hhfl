@@ -3,7 +3,7 @@ automium-web==0.1.1
 Click==7.0
 Django==3.0.2
 django-model-utils==3.2.0
-djangorestframework==3.10.3
+djangorestframework==3.11.2
 ez-setup==0.9
 Flask==1.1.1
 freeze==1.0.10
