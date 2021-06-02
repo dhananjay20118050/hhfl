@@ -63,7 +63,7 @@ tabula==1.0.5
 tabulate==0.8.6
 Tempita==0.5.2
 tensorflow==1.0.0
-urllib3==1.25.7
+urllib3==1.26.5
 virtualenv==16.7.9
 Werkzeug==0.16.0
 xlrd==0.7.1
